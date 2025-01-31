@@ -17,8 +17,22 @@ app.get('/', (req, res) => {
 
 // Stores appointment data in appointment array
 app.post('/submit', (req, res) => {
-    console.log(req.body);
-    appointments.push(req.body);
+    // Create an appointment object
+    const appointment = {
+        fname: req.body.fname,
+        lname: req.body.lname,
+        date: req.body.date,
+        time: req.body.time,
+        timestamp: new Date()
+    }
+
+    // Add the appointement to the appoointments array
+    appointments.push(appointment);
+
+    // Log the new appointment to the console
+    console.log(appointment);
+
+    // Send the thank-you page back to the user
     res.sendFile(`${import.meta.dirname}/views/thank-you.html`);
 });
 
